@@ -1,4 +1,4 @@
-interface SigninInterface {
+interface SignupInterface {
   name: string
   email: string
   password: string

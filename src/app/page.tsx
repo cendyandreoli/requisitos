@@ -1,16 +1,19 @@
 'use client';
 
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { Button } from "../components/button";
-import { Input } from "../components/input";
+import { Button } from "./components/button";
+import { Input } from "./components/input";
 
 export default function Home() {
-  const [formState, setFormState] = useState<SigninInterface>({
+  const [formState, setFormState] = useState<SignupInterface>({
     name: '',
     email: '',
     password: ''
   });
+
+  const router = useRouter();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormState({ ...formState, [event.target.name]: event.target.value });
@@ -19,8 +22,8 @@ export default function Home() {
   async function handleSignup(event: React.FormEvent) {
     event.preventDefault();
 
-    const response = await axios.post('https://localhost:3000', { data: formState });
-    console.log(response.data);
+    const response = await axios.post('http://localhost:3000/api/users', { data: formState });
+    router.push(`/about/${response.data}`);
   }
 
   return (

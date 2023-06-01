@@ -14,7 +14,7 @@ export default function About() {
   });
 
   async function findUser() {
-    const response = await axios.get(`https://localhost:3000/${params.id}`);
+    const response = await axios.get(`http://localhost:3000/api/users${params.id}`);
     setUser(response.data)
   }
 
